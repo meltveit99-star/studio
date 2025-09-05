@@ -4,11 +4,13 @@ import { z } from 'zod';
 import { ContactFormSchema } from '@/lib/schema';
 import { Resend } from 'resend';
 import { ContactFormEmail } from '@/components/emails/contact-form-email';
-import { resendApiKey, contactFormSendTo } from '@/lib/config';
 
 const fromEmail = 'onboarding@resend.dev';
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const contactFormSendTo = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
+
   const result = ContactFormSchema.safeParse(data);
 
   if (!result.success) {

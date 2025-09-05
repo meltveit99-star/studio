@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative w-full h-[70vh]">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <Carousel
           plugins={[plugin.current]}
           className="w-full h-full"
@@ -94,8 +94,9 @@ export default function Home() {
                   <Image
                     src={item.src}
                     alt={item.alt}
-                    fill
-                    className="object-cover object-center"
+                    width={1920}
+                    height={1080}
+                    className="absolute inset-0 w-full h-full object-cover"
                     data-ai-hint={item.hint}
                     priority={index === 0}
                   />

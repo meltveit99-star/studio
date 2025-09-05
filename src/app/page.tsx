@@ -11,25 +11,25 @@ import { CheckCircle, Clock, Phone, ShieldCheck, Users } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 
 export default function Home() {
-  const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const plugin = React.useRef(Autoplay({ delay: 10000, stopOnInteraction: false }));
 
   const carouselItems = [
     {
-      src: 'https://picsum.photos/1920/1080',
+      src: 'https://picsum.photos/seed/picsum1/1920/1080',
       alt: 'Velholdt borettslag med grøntområde',
       hint: 'maintained apartment building',
       title: 'Totalleverandør av Facility Management',
       description: 'Én kontakt, én faktura – vi koordinerer alle vaktmestertjenester for borettslag og næringseiendom.',
     },
     {
-      src: 'https://picsum.photos/1920/1081',
+      src: 'https://picsum.photos/seed/picsum2/1920/1080',
       alt: 'Moderne næringsbygg med glassfasade',
       hint: 'modern office building',
       title: 'Effektiv drift for Næringseiendom',
       description: 'Vi sørger for at ditt næringsbygg er representativt, trygt og velfungerende, hver dag.',
     },
     {
-      src: 'https://picsum.photos/1920/1082',
+      src: 'https://picsum.photos/seed/picsum3/1920/1080',
       alt: 'Vaktmester som utfører vedlikeholdsarbeid',
       hint: 'janitor maintenance',
       title: 'Pålitelige Vaktmestertjenester',
@@ -80,12 +80,11 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] min-h-[400px] w-full">
+      <section className="relative w-full h-[60vh] min-h-[500px]">
         <Carousel
           plugins={[plugin.current]}
           className="w-full h-full"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
+          opts={{ loop: true }}
         >
           <CarouselContent className="h-full">
             {carouselItems.map((item, index) => (
@@ -102,7 +101,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-black/50" />
                   <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
                     <h1 className="text-4xl md:text-6xl font-bold font-headline">{item.title}</h1>
-                    <p className="mt-4 max-w-2xl text-lg md:text-xl">{item.description}</p>
+                    <p className="mt-4 max-w-4xl text-lg md:text-xl">{item.description}</p>
                     <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
                       <Link href="/kontakt">Få gratis befaring</Link>
                     </Button>

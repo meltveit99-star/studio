@@ -3,8 +3,6 @@ import { Building } from 'lucide-react';
 import { NAV_LINKS } from '@/lib/constants';
 
 export function Footer() {
-  const footerLinks = [...NAV_LINKS, { href: '/seo-optimizer', label: 'SEO Verktøy' }];
-
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 py-12">
@@ -21,7 +19,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 font-headline">Sider</h3>
             <ul className="space-y-2">
-              {footerLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-muted-foreground hover:text-primary">
                     {link.label}

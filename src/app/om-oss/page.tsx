@@ -3,14 +3,6 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import Autoplay from "embla-carousel-autoplay"
 
 export const metadata: Metadata = {
   title: 'Om oss',
@@ -25,15 +17,6 @@ export default function AboutUsPage() {
     'Skreddersydde løsninger for borettslag og næringseiendom.',
   ];
 
-  const images = [
-    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2',
-    'https://images.unsplash.com/photo-1580587771525-78b9dba3b914',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
-    'https://images.unsplash.com/photo-1570129477492-45c003edd2be',
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c',
-  ];
-
-
   return (
     <>
       <section className="py-16 md:py-24 bg-card">
@@ -46,34 +29,14 @@ export default function AboutUsPage() {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2 md:items-center">
             <div>
-              <Carousel
-                className="w-full"
-                plugins={[
-                  Autoplay({
-                    delay: 5000,
-                  }),
-                ]}
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-              >
-                <CarouselContent>
-                  {images.map((src, index) => (
-                    <CarouselItem key={index}>
-                      <Image
-                        alt={`Bilde ${index + 1} av eiendommer`}
-                        className="aspect-[3/2] w-full overflow-hidden rounded-lg object-cover"
-                        height={400}
-                        src={src}
-                        width={600}
-                      />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
+              <Image
+                src="https://picsum.photos/600/400"
+                alt="Profesjonelt håndtrykk som symboliserer partnerskap med FM-service"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-md"
+                data-ai-hint="professional handshake"
+              />
             </div>
             <div className="text-lg text-muted-foreground space-y-4">
               <p>

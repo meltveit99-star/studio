@@ -3,16 +3,13 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Autoplay from 'embla-carousel-autoplay';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { CheckCircle, Clock, Phone, ShieldCheck, Users } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 
 export default function Home() {
-  const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
-
   const carouselItems = [
     {
       src: 'https://picsum.photos/seed/picsum1/1920/1080',
@@ -82,11 +79,8 @@ export default function Home() {
     <div className="flex flex-col">
       <section className="relative w-full h-[70vh] overflow-hidden">
         <Carousel
-          plugins={[plugin.current]}
           className="w-full h-full"
           opts={{ loop: true }}
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent className="h-full">
             {carouselItems.map((item, index) => (
@@ -111,6 +105,8 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
         </Carousel>
       </section>
 

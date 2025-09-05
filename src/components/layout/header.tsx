@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
@@ -44,6 +44,10 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
+              <SheetHeader className="sr-only">
+                 <SheetTitle>Meny</SheetTitle>
+                 <SheetDescription>En liste med lenker for å navigere på siden.</SheetDescription>
+              </SheetHeader>
               <nav className="flex flex-col gap-6 pt-8">
                 {NAV_LINKS.map((link) => (
                   <Link

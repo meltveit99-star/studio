@@ -1,14 +1,25 @@
+'use client';
+
+import * as React from 'react';
 import { ContactForm } from '@/components/contact-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone } from 'lucide-react';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Kontakt oss',
-  description: 'Kontakt FM-service for en gratis og uforpliktende befaring for ditt borettslag eller næringseiendom. Fyll ut vårt kontaktskjema, ring oss eller send en e-post.',
-};
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
+
+  const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState({ href: '', display: '95 86 32 24' });
+
+  React.useEffect(() => {
+    // Obfuscate email and phone on client-side to make it harder for bots
+    const user = 'kontakt';
+    const domain = 'fm-service.no';
+    setEmail(`${user}@${domain}`);
+
+    setPhone(prev => ({ ...prev, href: '+4795863224' }));
+  }, []);
+
+
   return (
     <>
       <section className="py-16 md:py-24 bg-background">
@@ -41,30 +52,40 @@ export default function ContactPage() {
                   Du kan også nå oss direkte på telefon eller e-post.
                 </p>
               </div>
-              <div className="flex items-center gap-4">
-                <Phone className="h-8 w-8 text-primary" />
+              <div className="flex items-start gap-4">
+                <Phone className="h-8 w-8 text-primary mt-1" />
                 <div>
                   <h3 className="font-semibold">Telefon</h3>
-                  <a href="tel:+4795863224" className="text-muted-foreground hover:text-primary">
-                    +47 95 86 32 24
-                  </a>
+                  {phone.href ? (
+                     <a href={`tel:${phone.href}`} className="text-muted-foreground hover:text-primary">
+                      {phone.display}
+                    </a>
+                  ) : (
+                    <span className="text-muted-foreground">Laster...</span>
+                  )}
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <Mail className="h-8 w-8 text-primary" />
+              <div className="flex items-start gap-4">
+                <Mail className="h-8 w-8 text-primary mt-1" />
                 <div>
                   <h3 className="font-semibold">E-post</h3>
-                  <a href="mailto:kontakt@fm-service.no" className="text-muted-foreground hover:text-primary">
-                    kontakt@fm-service.no
-                  </a>
+                   {email ? (
+                    <a href={`mailto:${email}`} className="text-muted-foreground hover:text-primary">
+                      {email}
+                    </a>
+                  ) : (
+                     <span className="text-muted-foreground">Laster...</span>
+                  )}
                 </div>
               </div>
-              <div>
-                <h3 className="font-semibold">Adresse</h3>
-                <p className="text-muted-foreground">
-                  FM-service AS<br/>
-                  Lensmannslia 4, 1386 Asker
-                </p>
+              <div className="flex items-start gap-4">
+                <MapPin className="h-8 w-8 text-primary mt-1" />
+                <div>
+                  <h3 className="font-semibold">Adresse</h3>
+                  <address className="text-muted-foreground not-italic">
+                    Lensmannslia 4,<br />1386 Asker
+                  </address>
+                </div>
               </div>
             </div>
           </div>

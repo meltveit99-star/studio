@@ -1,8 +1,22 @@
+'use client';
+
 import Link from 'next/link';
 import { Building } from 'lucide-react';
 import { NAV_LINKS } from '@/lib/constants';
+import * as React from 'react';
 
 export function Footer() {
+  const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState({ href: '', display: '95 86 32 24' });
+
+  React.useEffect(() => {
+    const user = 'kontakt';
+    const domain = 'fm-service.no';
+    setEmail(`${user}@${domain}`);
+
+    setPhone(prev => ({ ...prev, href: '+4795863224' }));
+  }, []);
+
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 py-12">
@@ -12,9 +26,10 @@ export function Footer() {
               <Building className="h-6 w-6 text-primary" />
               <span>FM-service</span>
             </Link>
-            <p className="text-muted-foreground">
-              Én kontakt, én faktura – vi koordinerer alt for borettslag og næringseiendom.
-            </p>
+            <address className="text-muted-foreground not-italic">
+              Lensmannslia 4,<br />
+              1386 Asker
+            </address>
           </div>
           <div>
             <h3 className="font-semibold mb-4 font-headline">Sider</h3>
@@ -31,13 +46,23 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 font-headline">Kontakt</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li>E-post: <a href="mailto:kontakt@fm-service.no" className="hover:text-primary">kontakt@fm-service.no</a></li>
-              <li>Telefon: <a href="tel:+4795863224" className="hover:text-primary">+47 95 86 32 24</a></li>
+               <li>
+                E-post: {email ? 
+                  <a href={`mailto:${email}`} className="hover:text-primary">{email}</a> :
+                  <span className="opacity-50">laster...</span>
+                }
+              </li>
+              <li>
+                Telefon: {phone.href ?
+                  <a href={`tel:${phone.href}`} className="hover:text-primary">{phone.display}</a> :
+                  <span className="opacity-50">laster...</span>
+                }
+              </li>
             </ul>
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} FM-service. Alle rettigheter forbeholdt. | <Link href="#" className="hover:text-primary">Personvernerklæring</Link></p>
+          <p>&copy; {new Date().getFullYear()} FM-service. Alle rettigheter forbeholdt. | <Link href="/personvern" className="hover:text-primary">Personvernerklæring</Link></p>
         </div>
       </div>
     </footer>

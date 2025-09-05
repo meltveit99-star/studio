@@ -2,8 +2,6 @@
 
 import { z } from 'zod';
 import { ContactFormSchema } from '@/lib/schema';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Resend } from 'resend';
 import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
@@ -25,14 +23,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
   }
 
   try {
-    // 1. Save to Firestore
-    const docRef = await addDoc(collection(db, 'contact-submissions'), {
-      ...result.data,
-      submittedAt: serverTimestamp(),
-    });
-    console.log('Document written with ID: ', docRef.id);
-
-    // 2. Send email notification if configured
+    // Send email notification if configured
     if (resend && toEmail && fromEmail) {
       const { error } = await resend.emails.send({
         from: `FM-service Kontaktskjema <${fromEmail}>`,

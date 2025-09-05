@@ -29,7 +29,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
       email: '',
       phone: '',
       propertyName: '',
-      propertySize: undefined,
+      propertySize: '' as unknown as number, // Fix: Changed from undefined to empty string
       propertyType: undefined,
       message: '',
     },

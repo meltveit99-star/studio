@@ -15,14 +15,10 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, error: 'Invalid data' };
   }
 
-  const toEmail = contactFormSendTo;
-
-  if (!resendApiKey || !toEmail) {
-    const errorMessage = 'Server configuration error: API key or recipient email is missing.';
-    console.error(errorMessage, {
-      hasApiKey: !!resendApiKey,
-      hasToEmail: !!toEmail,
-    });
+  if (!resendApiKey || !contactFormSendTo) {
+    console.error('Server Configuration Error: Environment variables RESEND_API_KEY or NEXT_PUBLIC_CONTACT_FORM_SEND_TO are not set.');
+    console.error(`- Has RESEND_API_KEY: ${!!resendApiKey}`);
+    console.error(`- Has NEXT_PUBLIC_CONTACT_FORM_SEND_TO: ${!!contactFormSendTo}`);
     return { success: false, error: 'Server configuration error preventing email submission.' };
   }
 
@@ -30,7 +26,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     const resend = new Resend(resendApiKey);
     const { error } = await resend.emails.send({
       from: fromEmail,
-      to: toEmail,
+      to: contactFormSendTo,
       subject: `Ny henvendelse fra ${result.data.name}`,
       react: ContactFormEmail({ ...result.data }),
     });

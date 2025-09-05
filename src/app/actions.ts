@@ -33,12 +33,19 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
 
     // 2. Send email notification if configured
     if (resend && toEmail && fromEmail) {
-      await resend.emails.send({
+      const { error } = await resend.emails.send({
         from: `FM-service Kontaktskjema <${fromEmail}>`,
         to: toEmail,
         subject: `Ny henvendelse fra ${result.data.name}`,
         react: ContactFormEmail({ ...result.data }),
       });
+
+      if (error) {
+        console.error('Resend error:', error);
+        // Throw an error to be caught by the client-side try/catch block
+        throw new Error('Failed to send email.');
+      }
+      
       console.log('Contact form email sent successfully.');
     } else {
       console.warn('Email sending skipped: RESEND_API_KEY, NEXT_PUBLIC_CONTACT_FORM_SEND_TO or NEXT_PUBLIC_CONTACT_FORM_SEND_FROM is not configured.');

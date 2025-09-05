@@ -1,18 +1,42 @@
+'use client';
+
+import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import Autoplay from 'embla-carousel-autoplay';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { CheckCircle, Clock, Phone, ShieldCheck, Users } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Hjem',
-  description: 'Forenklet drift med profesjonell facility management og vaktmestertjenester for borettslag og næringseiendom. Vi håndterer alt fra vaktmester til teknisk drift.',
-};
-
 
 export default function Home() {
+  const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+
+  const carouselItems = [
+    {
+      src: 'https://picsum.photos/1920/1080',
+      alt: 'Velholdt borettslag med grøntområde',
+      hint: 'maintained apartment building',
+      title: 'Totalleverandør av Facility Management',
+      description: 'Én kontakt, én faktura – vi koordinerer alle vaktmestertjenester for borettslag og næringseiendom.',
+    },
+    {
+      src: 'https://picsum.photos/1920/1081',
+      alt: 'Moderne næringsbygg med glassfasade',
+      hint: 'modern office building',
+      title: 'Effektiv drift for Næringseiendom',
+      description: 'Vi sørger for at ditt næringsbygg er representativt, trygt og velfungerende, hver dag.',
+    },
+    {
+      src: 'https://picsum.photos/1920/1082',
+      alt: 'Vaktmester som utfører vedlikeholdsarbeid',
+      hint: 'janitor maintenance',
+      title: 'Pålitelige Vaktmestertjenester',
+      description: 'Våre erfarne vaktmestere tar hånd om alt fra teknisk vedlikehold til grøntarealer.',
+    },
+  ];
+
   const benefits = [
     {
       icon: <Users className="h-10 w-10 text-primary" />,
@@ -52,31 +76,42 @@ export default function Home() {
       title: 'Problemfritt vedlikehold',
       description: 'Vi tar over koordineringen, og dere får én faktura og full kontroll.',
     },
-  ]
+  ];
 
   return (
     <div className="flex flex-col">
       <section className="relative h-[60vh] min-h-[400px] w-full">
-        <Image
-          src="https://picsum.photos/1920/1080"
-          alt="Velholdt borettslag med grøntområde"
-          fill
-          className="object-cover"
-          data-ai-hint="well maintained apartment building"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline">
-            Totalleverandør av Facility Management
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg md:text-xl">
-            Én kontakt, én faktura – vi koordinerer alle vaktmestertjenester for borettslag og næringseiendom.
-          </p>
-          <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/kontakt">Få gratis befaring</Link>
-          </Button>
-        </div>
+        <Carousel
+          plugins={[plugin.current]}
+          className="w-full h-full"
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+        >
+          <CarouselContent className="h-full">
+            {carouselItems.map((item, index) => (
+              <CarouselItem key={index} className="h-full">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={item.hint}
+                    priority={index === 0}
+                  />
+                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
+                    <h1 className="text-4xl md:text-6xl font-bold font-headline">{item.title}</h1>
+                    <p className="mt-4 max-w-2xl text-lg md:text-xl">{item.description}</p>
+                    <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+                      <Link href="/kontakt">Få gratis befaring</Link>
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </section>
 
       <section className="py-16 md:py-24 bg-background">
@@ -113,7 +148,7 @@ export default function Home() {
           </p>
           <div className="relative mt-12 grid gap-8 md:grid-cols-3">
             <div className="absolute top-1/2 left-0 hidden h-px w-full -translate-y-1/2 bg-border md:block"></div>
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <div key={step.step} className="relative flex flex-col items-center">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xl z-10">
                   {step.step}

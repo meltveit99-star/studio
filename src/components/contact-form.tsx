@@ -29,7 +29,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
       email: '',
       phone: '',
       propertyName: '',
-      propertySize: '' as unknown as number, // Fix: Changed from undefined to empty string
+      propertySize: undefined,
       propertyType: undefined,
       message: '',
     },
@@ -46,7 +46,17 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
         });
         form.reset();
       } else {
-        throw new Error(result.error || 'Form submission failed');
+        // Handle validation errors specifically
+        if (result.errors) {
+            const errorMessages = Object.values(result.errors).flat().join(' ');
+            toast({
+                title: 'Valideringsfeil',
+                description: errorMessages || 'Vennligst sjekk feltene og prøv igjen.',
+                variant: 'destructive',
+            });
+        } else {
+            throw new Error(result.message || 'Form submission failed');
+        }
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Kunne ikke sende meldingen. Prøv igjen senere.';
@@ -125,7 +135,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
             <FormItem>
               <FormLabel>Størrelse (kvm)</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="f.eks. 4000" {...field} name="propertySize" />
+                <Input type="number" placeholder="f.eks. 4000" {...field} onChange={e => field.onChange(e.target.valueAsNumber)} name="propertySize" />
               </FormControl>
               <FormMessage />
             </FormItem>

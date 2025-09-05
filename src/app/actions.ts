@@ -30,7 +30,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     const resend = new Resend(resendApiKey);
 
     const { error } = await resend.emails.send({
-      from: contactFormSendFrom,
+      from: `FM-service <${contactFormSendFrom}>`,
       to: contactFormSendTo,
       subject: `Ny henvendelse fra ${result.data.name}`,
       react: ContactFormEmail({ ...result.data }),

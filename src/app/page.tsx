@@ -7,8 +7,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Hjem | FM-service',
-  description: 'Forenklet drift med profesjonell koordinering for borettslag og næringseiendom. Vi håndterer vaktmester, elektriker, rørlegger og mer.',
+  title: 'Hjem',
+  description: 'Forenklet drift med profesjonell facility management og vaktmestertjenester for borettslag og næringseiendom. Vi håndterer alt fra vaktmester til teknisk drift.',
 };
 
 
@@ -59,7 +59,7 @@ export default function Home() {
       <section className="relative h-[60vh] min-h-[400px] w-full">
         <Image
           src="https://picsum.photos/1920/1080"
-          alt="Velholdt borettslag"
+          alt="Velholdt borettslag med grøntområde"
           fill
           className="object-cover"
           data-ai-hint="well maintained apartment building"
@@ -68,10 +68,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
           <h1 className="text-4xl md:text-6xl font-bold font-headline">
-            Én kontakt, én faktura
+            Totalleverandør av Facility Management
           </h1>
           <p className="mt-4 max-w-2xl text-lg md:text-xl">
-            Vi koordinerer alt for borettslag og næringseiendom.
+            Én kontakt, én faktura – vi koordinerer alle vaktmestertjenester for borettslag og næringseiendom.
           </p>
           <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/kontakt">Få gratis befaring</Link>
@@ -107,7 +107,7 @@ export default function Home() {
 
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-headline">Slik fungerer det</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-headline">Slik fungerer det: Fra befaring til problemfri eiendomsdrift</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
             Kom i gang med tre enkle trinn for en problemfri hverdag.
           </p>

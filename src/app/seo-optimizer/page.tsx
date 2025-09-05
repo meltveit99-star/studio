@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'SEO Verktøy',
-  description: 'Analyser og optimaliser innholdet på nettstedet ditt for relevante søkeord med vårt AI-drevne SEO-verktøy.',
+  description: 'Analyser og optimaliser innholdet på nettstedet ditt for relevante søkeord som "facility management" og "vaktmestertjenester" med vårt AI-drevne SEO-verktøy.',
 };
 
 export default function SeoOptimizerPage() {

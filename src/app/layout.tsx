@@ -6,10 +6,10 @@ import { Footer } from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: {
-    default: 'FM-service',
+    default: 'FM-service: Komplett Facility Management for Eiendom',
     template: '%s | FM-service',
   },
-  description: 'Én kontakt, én faktura – vi koordinerer alt for borettslag og næringseiendom.',
+  description: 'FM-service tilbyr komplette facility management-løsninger og vaktmestertjenester for borettslag og næringseiendom. Én kontakt, én faktura.',
 };
 
 export default function RootLayout({

@@ -4,8 +4,8 @@ import { Mail, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kontakt',
-  description: 'Kontakt oss for en gratis og uforpliktende befaring. Fyll ut vårt kontaktskjema, ring oss eller send en e-post.',
+  title: 'Kontakt oss',
+  description: 'Kontakt FM-service for en gratis og uforpliktende befaring for ditt borettslag eller næringseiendom. Fyll ut vårt kontaktskjema, ring oss eller send en e-post.',
 };
 
 export default function ContactPage() {
@@ -15,7 +15,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Kontakt oss for en gratis befaring</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            Har du spørsmål eller ønsker du å vite mer om hvordan vi kan hjelpe deg? Ta kontakt med oss i dag.
+            Har du spørsmål om vaktmestertjenester eller facility management? Ta kontakt med oss i dag for en uforpliktende prat.
           </p>
         </div>
       </section>

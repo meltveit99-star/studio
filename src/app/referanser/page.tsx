@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Referanser',
-  description: 'Se hva våre kunder sier. Les attester og casestudier fra borettslag og næringseiendom som bruker FM-service for en enklere hverdag.',
+  description: 'Se våre tidligere prosjekter og referanser innen facility management for borettslag og næringseiendom. Innhold oppdateres fortløpende.',
 };
 
 export default function ReferencesPage() {
@@ -10,9 +10,9 @@ export default function ReferencesPage() {
     <>
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">Referanser</h1>
+          <h1 className="text-4xl md:text-5xl font-bold font-headline">Våre Referanser og Prosjekter</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            Her vil vi dele erfaringer fra våre kunder og vise frem prosjekter vi er stolte av.
+            Vi er stolte av arbeidet vi leverer. Her vil vi dele erfaringer fra fornøyde kunder og vise frem prosjekter vi har fullført.
           </p>
         </div>
       </section>

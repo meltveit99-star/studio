@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Tjenester',
-  description: 'Oppdag våre facility management-tjenester for borettslag og næringseiendom. Vi tilbyr alt fra vaktmestertjenester til teknisk drift, alt gjennom én kontakt.',
+  description: 'Oppdag våre facility management-tjenester for borettslag og næringseiendom. Vi tilbyr alt fra vaktmestertjenester til teknisk drift og renhold, alt gjennom én kontakt.',
 };
 
 export default function ServicesPage() {
@@ -23,9 +23,9 @@ export default function ServicesPage() {
     <>
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">Alle tjenester, én kontakt</h1>
+          <h1 className="text-4xl md:text-5xl font-bold font-headline">Våre Tjenester innen Facility Management</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            Vi koordinerer et bredt spekter av håndverkere og spesialister for å dekke alle dine behov.
+            Vi koordinerer et bredt spekter av håndverkere og spesialister for å dekke alle dine behov for eiendomsdrift.
           </p>
         </div>
       </section>
@@ -33,9 +33,9 @@ export default function ServicesPage() {
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline">Våre Tjenester</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">Alle tjenester, én kontakt</h2>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-              Vi koordinerer et bredt spekter av håndverkere og spesialister for å dekke alle dine behov.
+              Fra teknisk drift til daglig vedlikehold – vi tilbyr en komplett løsning for ditt borettslag eller næringsbygg.
             </p>
           </div>
           <div className="mt-12 grid gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">

@@ -175,7 +175,7 @@ export default function Home() {
                 <CardTitle className="font-headline">Bestill gratis befaring</CardTitle>
               </CardHeader>
               <CardContent>
-                <ContactForm />
+                <ContactForm withMessage />
               </CardContent>
             </Card>
           </div>

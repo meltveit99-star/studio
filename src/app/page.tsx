@@ -79,9 +79,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative w-full h-[80vh] overflow-hidden">
+      <section className="w-full">
         <Carousel
-          className="w-full h-full"
+          className="w-full h-[70vh]"
           opts={{ loop: true }}
           plugins={[
             Autoplay({
@@ -91,23 +91,23 @@ export default function Home() {
         >
           <CarouselContent className="h-full">
             {carouselItems.map((item, index) => (
-              <CarouselItem key={index} className="relative h-full">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    className="absolute inset-0 w-full h-full object-cover"
-                    data-ai-hint={item.hint}
-                    priority={index === 0}
-                  />
-                  <div className="absolute inset-0 bg-black/50" />
-                  <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
-                    <h1 className="text-4xl md:text-6xl font-bold font-headline">{item.title}</h1>
-                    <p className="mt-4 max-w-4xl text-lg md:text-xl">{item.description}</p>
-                    <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link href="/kontakt">Få gratis befaring</Link>
-                    </Button>
-                  </div>
+              <CarouselItem key={index} className="relative h-full w-full">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  className="object-cover"
+                  data-ai-hint={item.hint}
+                  priority={index === 0}
+                />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
+                  <h1 className="text-4xl md:text-6xl font-bold font-headline">{item.title}</h1>
+                  <p className="mt-4 max-w-4xl text-lg md:text-xl">{item.description}</p>
+                  <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Link href="/kontakt">Få gratis befaring</Link>
+                  </Button>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>

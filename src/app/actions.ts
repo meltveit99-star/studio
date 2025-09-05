@@ -19,8 +19,6 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
 
   if (!resendApiKey || !contactFormSendTo) {
     console.error('Server Configuration Error: Environment variables RESEND_API_KEY or CONTACT_FORM_SEND_TO are not set.');
-    console.error(`- Has RESEND_API_KEY: ${!!resendApiKey}`);
-    console.error(`- Has CONTACT_FORM_SEND_TO: ${!!contactFormSendTo}`);
     return { success: false, error: 'Server configuration error preventing email submission.' };
   }
 

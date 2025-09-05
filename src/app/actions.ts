@@ -5,11 +5,10 @@ import { ContactFormSchema } from '@/lib/schema';
 import { Resend } from 'resend';
 import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
-const fromEmail = 'onboarding@resend.dev';
-
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const contactFormSendTo = process.env.CONTACT_FORM_SEND_TO;
+  const contactFormSendFrom = process.env.CONTACT_FORM_SEND_FROM;
   
   const result = ContactFormSchema.safeParse(data);
   
@@ -17,8 +16,8 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, error: 'Invalid data' };
   }
 
-  if (!resendApiKey || !contactFormSendTo) {
-    console.error('Server Configuration Error: Environment variables RESEND_API_KEY or CONTACT_FORM_SEND_TO are not set.');
+  if (!resendApiKey || !contactFormSendTo || !contactFormSendFrom) {
+    console.error('Server Configuration Error: One or more environment variables are not set.');
     return { success: false, error: 'Server configuration error preventing email submission.' };
   }
 
@@ -26,7 +25,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     const resend = new Resend(resendApiKey);
 
     const { error } = await resend.emails.send({
-      from: fromEmail,
+      from: contactFormSendFrom,
       to: contactFormSendTo,
       subject: `Ny henvendelse fra ${result.data.name}`,
       react: ContactFormEmail({ ...result.data }),

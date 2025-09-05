@@ -90,13 +90,12 @@ export default function Home() {
         >
           <CarouselContent className="h-full">
             {carouselItems.map((item, index) => (
-              <CarouselItem key={index} className="h-full">
-                <div className="relative w-full h-full">
+              <CarouselItem key={index} className="relative h-full">
                   <Image
                     src={item.src}
                     alt={item.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
                     data-ai-hint={item.hint}
                     priority={index === 0}
                   />
@@ -108,7 +107,6 @@ export default function Home() {
                       <Link href="/kontakt">Få gratis befaring</Link>
                     </Button>
                   </div>
-                </div>
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -10,34 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  const packages = [
-    {
-      name: 'Basis',
-      features: [
-        'Koordinering av alle leverandører',
-        '24/7 vakttelefon',
-        'Månedlige rapporter',
-      ],
-    },
-    {
-      name: 'Standard',
-      features: [
-        'Alt i Basis-pakken',
-        'Månedlig inspeksjon',
-        'Koordinering av småreparasjoner',
-      ],
-      popular: true,
-    },
-    {
-      name: 'Premium',
-      features: [
-        'Alt i Standard-pakken',
-        'Full oppfølging av eiendommen',
-        'Prioritert respons for akutte behov',
-      ],
-    },
-  ];
-
   const additionalServices = [
     { icon: <Wrench className="h-8 w-8 text-primary" />, name: 'Vaktmester' },
     { icon: <Zap className="h-8 w-8 text-primary" />, name: 'Elektriker' },
@@ -53,45 +25,15 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Alle tjenester, én kontakt</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            Vi har satt sammen pakker som dekker de fleste behov, men kan også skreddersy en løsning for din eiendom.
+            Vi koordinerer et bredt spekter av håndverkere og spesialister for å dekke alle dine behov.
           </p>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {packages.map((pkg) => (
-              <Card key={pkg.name} className={`flex flex-col ${pkg.popular ? 'border-primary shadow-lg' : ''}`}>
-                <CardHeader>
-                  {pkg.popular && <div className="text-sm font-bold text-primary text-center mb-2">Mest populære</div>}
-                  <CardTitle className="text-2xl font-headline text-center">{pkg.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <ul className="space-y-3">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex items-start">
-                        <Check className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                   <Button asChild className="w-full" variant={pkg.popular ? 'default' : 'outline'}>
-                    <Link href="/kontakt">Velg pakke</Link>
-                   </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline">Tilleggstjenester</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">Våre Tjenester</h2>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
               Vi koordinerer et bredt spekter av håndverkere og spesialister for å dekke alle dine behov.
             </p>

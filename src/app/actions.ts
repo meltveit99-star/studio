@@ -10,9 +10,9 @@ const fromEmail = 'onboarding@resend.dev';
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const contactFormSendTo = process.env.CONTACT_FORM_SEND_TO;
-
+  
   const result = ContactFormSchema.safeParse(data);
-
+  
   if (!result.success) {
     return { success: false, error: 'Invalid data' };
   }
@@ -26,6 +26,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
 
   try {
     const resend = new Resend(resendApiKey);
+
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: contactFormSendTo,

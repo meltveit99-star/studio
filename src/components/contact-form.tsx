@@ -46,12 +46,13 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
         });
         form.reset();
       } else {
-        throw new Error('Form submission failed');
+        throw new Error(result.error || 'Form submission failed');
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Kunne ikke sende meldingen. Prøv igjen senere.';
       toast({
         title: 'En feil oppstod',
-        description: 'Kunne ikke sende meldingen. Prøv igjen senere.',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
@@ -70,7 +71,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
                 <FormItem>
                   <FormLabel>Navn</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ditt navn" {...field} />
+                    <Input placeholder="Ditt navn" {...field} name="name" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -83,7 +84,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
                 <FormItem>
                   <FormLabel>E-post</FormLabel>
                   <FormControl>
-                    <Input placeholder="din@epost.no" {...field} />
+                    <Input placeholder="din@epost.no" {...field} name="email" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,7 +98,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
             <FormItem>
               <FormLabel>Telefon</FormLabel>
               <FormControl>
-                <Input placeholder="Ditt telefonnummer" {...field} />
+                <Input placeholder="Ditt telefonnummer" {...field} name="phone" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -111,7 +112,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
             <FormItem>
               <FormLabel>Borettslag/Eiendom</FormLabel>
               <FormControl>
-                <Input placeholder="Navn på eiendom" {...field} />
+                <Input placeholder="Navn på eiendom" {...field} name="propertyName" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -124,7 +125,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
             <FormItem>
               <FormLabel>Størrelse (kvm)</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="f.eks. 4000" {...field} />
+                <Input type="number" placeholder="f.eks. 4000" {...field} name="propertySize" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -137,7 +138,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Type eiendom</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} name="propertyType">
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Velg type" />
@@ -160,7 +161,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
               <FormItem>
                 <FormLabel>Melding</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Fortell oss litt om hva du trenger hjelp med..." className="min-h-[100px]" {...field} />
+                  <Textarea placeholder="Fortell oss litt om hva du trenger hjelp med..." className="min-h-[100px]" {...field} name="message" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

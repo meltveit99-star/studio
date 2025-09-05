@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative w-full h-[85vh] min-h-[650px]">
+      <section className="relative w-full h-[70vh]">
         <Carousel
           plugins={[plugin.current]}
           className="w-full h-full"

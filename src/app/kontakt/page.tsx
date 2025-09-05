@@ -54,15 +54,15 @@ export default function ContactPage() {
                 <Mail className="h-8 w-8 text-primary" />
                 <div>
                   <h3 className="font-semibold">E-post</h3>
-                  <a href="mailto:kontakt@facilityflow.no" className="text-muted-foreground hover:text-primary">
-                    kontakt@facilityflow.no
+                  <a href="mailto:kontakt@fm-service.no" className="text-muted-foreground hover:text-primary">
+                    kontakt@fm-service.no
                   </a>
                 </div>
               </div>
               <div>
                 <h3 className="font-semibold">Adresse</h3>
                 <p className="text-muted-foreground">
-                  FacilityFlow AS<br/>
+                  FM-service AS<br/>
                   Eksempelveien 1, 0123 Oslo
                 </p>
               </div>

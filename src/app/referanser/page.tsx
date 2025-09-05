@@ -6,13 +6,13 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Referanser',
-  description: 'Se hva våre kunder sier. Les attester og casestudier fra borettslag og næringseiendom som bruker FacilityFlow for en enklere hverdag.',
+  description: 'Se hva våre kunder sier. Les attester og casestudier fra borettslag og næringseiendom som bruker FM-service for en enklere hverdag.',
 };
 
 export default function ReferencesPage() {
   const testimonials = [
     {
-      quote: "Med FacilityFlow slipper vi koordineringshodepine og får alt i én faktura! Det har frigjort utrolig mye tid for styret.",
+      quote: "Med FM-service slipper vi koordineringshodepine og får alt i én faktura! Det har frigjort utrolig mye tid for styret.",
       author: "Styreleder, Borettslag Solhøyden",
     },
     {

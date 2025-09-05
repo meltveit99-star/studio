@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Om oss',
-  description: 'Lær mer om FacilityFlow, din lokale partner for problemfri drift av borettslag og næringseiendom. Vi sparer deg tid, reduserer stress og sikrer kvalitet.',
+  description: 'Lær mer om FM-service, din lokale partner for problemfri drift av borettslag og næringseiendom. Vi sparer deg tid, reduserer stress og sikrer kvalitet.',
 };
 
 export default function AboutUsPage() {

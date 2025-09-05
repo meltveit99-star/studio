@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Hjem | FacilityFlow',
+  title: 'Hjem | FM-service',
   description: 'Forenklet drift med profesjonell koordinering for borettslag og næringseiendom. Vi håndterer vaktmester, elektriker, rørlegger og mer.',
 };
 

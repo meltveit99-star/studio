@@ -6,8 +6,8 @@ import { Footer } from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: {
-    default: 'FacilityFlow',
-    template: '%s | FacilityFlow',
+    default: 'FM-service',
+    template: '%s | FM-service',
   },
   description: 'Én kontakt, én faktura – vi koordinerer alt for borettslag og næringseiendom.',
 };

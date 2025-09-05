@@ -16,7 +16,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline">
           <Building className="h-6 w-6 text-primary" />
-          <span>FacilityFlow</span>
+          <span>FM-service</span>
         </Link>
         <nav className="hidden md:flex md:items-center md:gap-6">
           {NAV_LINKS.map((link) => (

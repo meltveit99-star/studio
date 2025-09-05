@@ -12,7 +12,7 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline mb-2">
               <Building className="h-6 w-6 text-primary" />
-              <span>FacilityFlow</span>
+              <span>FM-service</span>
             </Link>
             <p className="text-muted-foreground">
               Én kontakt, én faktura – vi koordinerer alt for borettslag og næringseiendom.
@@ -33,13 +33,13 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 font-headline">Kontakt</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li>E-post: <a href="mailto:kontakt@facilityflow.no" className="hover:text-primary">kontakt@facilityflow.no</a></li>
+              <li>E-post: <a href="mailto:kontakt@fm-service.no" className="hover:text-primary">kontakt@fm-service.no</a></li>
               <li>Telefon: <a href="tel:+4712345678" className="hover:text-primary">+47 123 45 678</a></li>
             </ul>
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} FacilityFlow. Alle rettigheter forbeholdt. | <Link href="#" className="hover:text-primary">Personvernerklæring</Link></p>
+          <p>&copy; {new Date().getFullYear()} FM-service. Alle rettigheter forbeholdt. | <Link href="#" className="hover:text-primary">Personvernerklæring</Link></p>
         </div>
       </div>
     </footer>

@@ -9,7 +9,7 @@ const fromEmail = 'onboarding@resend.dev';
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const contactFormSendTo = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
+  const contactFormSendTo = process.env.CONTACT_FORM_SEND_TO;
 
   const result = ContactFormSchema.safeParse(data);
 
@@ -18,9 +18,9 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
   }
 
   if (!resendApiKey || !contactFormSendTo) {
-    console.error('Server Configuration Error: Environment variables RESEND_API_KEY or NEXT_PUBLIC_CONTACT_FORM_SEND_TO are not set.');
+    console.error('Server Configuration Error: Environment variables RESEND_API_KEY or CONTACT_FORM_SEND_TO are not set.');
     console.error(`- Has RESEND_API_KEY: ${!!resendApiKey}`);
-    console.error(`- Has NEXT_PUBLIC_CONTACT_FORM_SEND_TO: ${!!contactFormSendTo}`);
+    console.error(`- Has CONTACT_FORM_SEND_TO: ${!!contactFormSendTo}`);
     return { success: false, error: 'Server configuration error preventing email submission.' };
   }
 

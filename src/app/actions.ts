@@ -7,7 +7,6 @@ import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
-// Using a default 'from' email provided by Resend for deliverability.
 const fromEmail = 'onboarding@resend.dev';
 
 let resend: Resend | undefined;
@@ -23,10 +22,9 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
   }
 
   try {
-    // Send email notification if configured
     if (resend && toEmail && fromEmail) {
       const { error } = await resend.emails.send({
-        from: `FM-service Kontaktskjema <${fromEmail}>`,
+        from: fromEmail,
         to: toEmail,
         subject: `Ny henvendelse fra ${result.data.name}`,
         react: ContactFormEmail({ ...result.data }),
@@ -34,7 +32,6 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
 
       if (error) {
         console.error('Resend error:', error);
-        // Throw an error to be caught by the client-side try/catch block
         throw new Error('Failed to send email.');
       }
       

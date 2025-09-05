@@ -10,6 +10,11 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
   const contactFormSendTo = process.env.CONTACT_FORM_SEND_TO;
   const contactFormSendFrom = process.env.CONTACT_FORM_SEND_FROM;
   
+  console.log('Attempting to send email with the following configuration:');
+  console.log(`- RESEND_API_KEY loaded: ${!!resendApiKey}`);
+  console.log(`- CONTACT_FORM_SEND_TO: ${contactFormSendTo}`);
+  console.log(`- CONTACT_FORM_SEND_FROM: ${contactFormSendFrom}`);
+  
   const result = ContactFormSchema.safeParse(data);
   
   if (!result.success) {

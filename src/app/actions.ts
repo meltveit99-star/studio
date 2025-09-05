@@ -7,7 +7,7 @@ import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
-const fromEmail = 'kunde@resend.dev';
+const fromEmail = 'onboarding@resend.dev';
 
 let resend: Resend | undefined;
 if (resendApiKey) {

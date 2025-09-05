@@ -14,7 +14,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, error: 'Invalid data' };
   }
 
-  const resendApiKey = process.env.NEXT_PUBLIC_RESEND_API_KEY;
+  const resendApiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
 
   if (!resendApiKey || !toEmail) {
@@ -23,9 +23,8 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, error: 'Server configuration error preventing email submission.' };
   }
 
-  const resend = new Resend(resendApiKey);
-
   try {
+    const resend = new Resend(resendApiKey);
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: toEmail,

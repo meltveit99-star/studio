@@ -3,6 +3,9 @@
 import { z } from 'zod';
 import { ContactFormSchema } from '@/lib/schema';
 import { optimizeWebsiteContentForSEO } from '@/ai/flows/optimize-website-content-for-seo';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
   const result = ContactFormSchema.safeParse(data);
@@ -11,11 +14,17 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, error: "Invalid data" };
   }
 
-  // Here you would typically send the data to a database like Firestore
-  // For this example, we'll just log it to the console.
-  console.log('New contact form submission:', result.data);
-
-  return { success: true };
+  try {
+    const docRef = await addDoc(collection(db, 'contact-submissions'), {
+      ...result.data,
+      submittedAt: serverTimestamp(),
+    });
+    console.log('Document written with ID: ', docRef.id);
+    return { success: true };
+  } catch (error) {
+    console.error('Error adding document: ', error);
+    return { success: false, error: 'Failed to submit form.' };
+  }
 }
 
 

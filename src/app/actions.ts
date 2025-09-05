@@ -7,9 +7,14 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Resend } from 'resend';
 import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
 const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
 const fromEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_FROM;
+
+let resend: Resend | undefined;
+if (resendApiKey) {
+  resend = new Resend(resendApiKey);
+}
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
   const result = ContactFormSchema.safeParse(data);
@@ -26,8 +31,8 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     });
     console.log('Document written with ID: ', docRef.id);
 
-    // 2. Send email notification
-    if (toEmail && fromEmail) {
+    // 2. Send email notification if configured
+    if (resend && toEmail && fromEmail) {
       await resend.emails.send({
         from: `FM-service Kontaktskjema <${fromEmail}>`,
         to: toEmail,

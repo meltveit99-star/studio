@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { CheckCircle, Clock, Phone, ShieldCheck, Users } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
+import Autoplay from "embla-carousel-autoplay";
+
 
 export default function Home() {
   const carouselItems = [
@@ -81,6 +83,11 @@ export default function Home() {
         <Carousel
           className="w-full h-full"
           opts={{ loop: true }}
+          plugins={[
+            Autoplay({
+              delay: 6000,
+            }),
+          ]}
         >
           <CarouselContent className="h-full">
             {carouselItems.map((item, index) => (
@@ -88,8 +95,7 @@ export default function Home() {
                   <Image
                     src={item.src}
                     alt={item.alt}
-                    width={1920}
-                    height={1080}
+                    fill
                     className="absolute inset-0 w-full h-full object-cover"
                     data-ai-hint={item.hint}
                     priority={index === 0}

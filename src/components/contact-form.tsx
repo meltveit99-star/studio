@@ -135,7 +135,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
             <FormItem>
               <FormLabel>Størrelse (kvm)</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="f.eks. 4000" {...field} onChange={e => field.onChange(e.target.valueAsNumber)} name="propertySize" />
+                <Input type="number" placeholder="f.eks. 4000" {...field} value={field.value ?? ''} onChange={e => field.onChange(e.target.valueAsNumber || undefined)} name="propertySize" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -148,7 +148,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Type eiendom</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value} name="propertyType">
+              <Select onValueChange={field.onChange} value={field.value ?? ''} name="propertyType">
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Velg type" />

@@ -45,8 +45,8 @@ export default function ContactPage() {
                 <Phone className="h-8 w-8 text-primary" />
                 <div>
                   <h3 className="font-semibold">Telefon</h3>
-                  <a href="tel:+4712345678" className="text-muted-foreground hover:text-primary">
-                    +47 123 45 678
+                  <a href="tel:+4795863224" className="text-muted-foreground hover:text-primary">
+                    +47 95 86 32 24
                   </a>
                 </div>
               </div>
@@ -63,7 +63,7 @@ export default function ContactPage() {
                 <h3 className="font-semibold">Adresse</h3>
                 <p className="text-muted-foreground">
                   FM-service AS<br/>
-                  Eksempelveien 1, 0123 Oslo
+                  Lensmannslia 4, 1386 Asker
                 </p>
               </div>
             </div>

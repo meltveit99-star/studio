@@ -32,7 +32,7 @@ export function Footer() {
             <h3 className="font-semibold mb-4 font-headline">Kontakt</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>E-post: <a href="mailto:kontakt@fm-service.no" className="hover:text-primary">kontakt@fm-service.no</a></li>
-              <li>Telefon: <a href="tel:+4712345678" className="hover:text-primary">+47 123 45 678</a></li>
+              <li>Telefon: <a href="tel:+4795863224" className="hover:text-primary">+47 95 86 32 24</a></li>
             </ul>
           </div>
         </div>

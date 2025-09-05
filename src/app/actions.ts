@@ -5,8 +5,6 @@ import { ContactFormSchema } from '@/lib/schema';
 import { Resend } from 'resend';
 import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
 const fromEmail = 'onboarding@resend.dev';
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>) {
@@ -16,9 +14,13 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, error: 'Invalid data' };
   }
 
+  const resendApiKey = process.env.NEXT_PUBLIC_RESEND_API_KEY;
+  const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
+
   if (!resendApiKey || !toEmail) {
-    console.error('Server configuration error: RESEND_API_KEY or NEXT_PUBLIC_CONTACT_FORM_SEND_TO is not set.');
-    throw new Error('Server configuration error preventing email submission.');
+    const errorMessage = 'Server configuration error: API key or recipient email is missing.';
+    console.error(errorMessage);
+    return { success: false, error: 'Server configuration error preventing email submission.' };
   }
 
   const resend = new Resend(resendApiKey);
@@ -33,7 +35,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
 
     if (error) {
       console.error('Resend API Error:', error);
-      throw new Error(`Failed to send email: ${error.message}`);
+      return { success: false, error: `Failed to send email: ${error.message}` };
     }
     
     console.log('Contact form email sent successfully.');
@@ -41,10 +43,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
 
   } catch (error) {
     console.error('Error in handleContactForm:', error);
-    // Re-throw the error to be caught by the client-side form logic
-    if (error instanceof Error) {
-        throw new Error(error.message);
-    }
-    throw new Error('An unknown error occurred while submitting the form.');
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+    return { success: false, error: `An unknown error occurred while submitting the form: ${errorMessage}` };
   }
 }

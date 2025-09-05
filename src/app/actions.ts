@@ -9,7 +9,8 @@ import { ContactFormEmail } from '@/components/emails/contact-form-email';
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const toEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_TO;
-const fromEmail = process.env.NEXT_PUBLIC_CONTACT_FORM_SEND_FROM;
+// Using a default 'from' email provided by Resend for deliverability.
+const fromEmail = 'onboarding@resend.dev';
 
 let resend: Resend | undefined;
 if (resendApiKey) {
@@ -48,7 +49,7 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
       
       console.log('Contact form email sent successfully.');
     } else {
-      console.warn('Email sending skipped: RESEND_API_KEY, NEXT_PUBLIC_CONTACT_FORM_SEND_TO or NEXT_PUBLIC_CONTACT_FORM_SEND_FROM is not configured.');
+      console.warn('Email sending skipped: RESEND_API_KEY or NEXT_PUBLIC_CONTACT_FORM_SEND_TO is not configured.');
     }
 
     return { success: true };

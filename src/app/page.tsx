@@ -11,7 +11,7 @@ import { CheckCircle, Clock, Phone, ShieldCheck, Users } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 
 export default function Home() {
-  const plugin = React.useRef(Autoplay({ delay: 10000, stopOnInteraction: false }));
+  const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   const carouselItems = [
     {
@@ -80,11 +80,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative w-full h-[60vh] min-h-[500px]">
+      <section className="relative w-full h-[85vh] min-h-[650px]">
         <Carousel
           plugins={[plugin.current]}
           className="w-full h-full"
           opts={{ loop: true }}
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent className="h-full">
             {carouselItems.map((item, index) => (

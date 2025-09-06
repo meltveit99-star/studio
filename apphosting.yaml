@@ -5,9 +5,9 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
-# Make the secrets we created in Secret Manager available as environment variables
-availableSecrets:
-  - secret: RESEND_API_KEY
-  - secret: CONTACT_FORM_SEND_TO
-  - secret: CONTACT_FORM_SEND_FROM
+  # Make the secrets we created in Secret Manager available as environment variables
+  availableSecrets:
+    - secret: RESEND_API_KEY
+    - secret: CONTACT_FORM_SEND_TO
+    - secret: CONTACT_FORM_SEND_FROM
 location: europe-west1

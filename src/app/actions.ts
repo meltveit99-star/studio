@@ -14,6 +14,11 @@ type ContactFormState = {
 };
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>): Promise<ContactFormState> {
+  // Log all environment variables to debug
+  console.log('--- DEBUG: Environment Variables ---');
+  console.log(JSON.stringify(process.env));
+  console.log('--- END DEBUG ---');
+
   const result = ContactFormSchema.safeParse(data);
   
   if (!result.success) {

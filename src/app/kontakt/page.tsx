@@ -1,5 +1,5 @@
 'use client';
-
+// kan endres 
 import * as React from 'react';
 import { ContactForm } from '@/components/contact-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

@@ -10,4 +10,4 @@ runConfig:
     - secret: RESEND_API_KEY
     - secret: CONTACT_FORM_SEND_TO
     - secret: CONTACT_FORM_SEND_FROM
-location: europe-west1
+location: europe-west4

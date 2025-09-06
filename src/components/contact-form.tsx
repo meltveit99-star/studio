@@ -39,15 +39,14 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
     setIsSubmitting(true);
     try {
       const result = await handleContactForm(data);
-      if (result.success) {
+      if (result && result.success) {
         toast({
           title: 'Melding sendt!',
           description: 'Takk for din henvendelse. Vi kontakter deg snart.',
         });
         form.reset();
       } else {
-        // Handle validation errors specifically
-        if (result.errors) {
+        if (result && result.errors) {
             const errorMessages = Object.values(result.errors).flat().join(' ');
             toast({
                 title: 'Valideringsfeil',
@@ -55,7 +54,7 @@ export function ContactForm({ withMessage = false }: ContactFormProps) {
                 variant: 'destructive',
             });
         } else {
-            throw new Error(result.message || 'Form submission failed');
+            throw new Error(result?.message || 'Form submission failed');
         }
       }
     } catch (error) {

@@ -14,10 +14,6 @@ type ContactFormState = {
 };
 
 export async function handleContactForm(data: z.infer<typeof ContactFormSchema>): Promise<ContactFormState> {
-  const resendApiKey = process.env.RESEND_API_KEY;
-  const contactFormSendTo = process.env.CONTACT_FORM_SEND_TO;
-  const contactFormSendFrom = process.env.CONTACT_FORM_SEND_FROM;
-  
   const result = ContactFormSchema.safeParse(data);
   
   if (!result.success) {
@@ -28,9 +24,21 @@ export async function handleContactForm(data: z.infer<typeof ContactFormSchema>)
     };
   }
 
-  if (!resendApiKey || !contactFormSendTo || !contactFormSendFrom) {
-    console.error('Server Configuration Error: One or more environment variables are not set.');
-    return { success: false, message: 'Server configuration error preventing email submission.' };
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const contactFormSendTo = process.env.CONTACT_FORM_SEND_TO;
+  const contactFormSendFrom = process.env.CONTACT_FORM_SEND_FROM;
+
+  if (!resendApiKey) {
+    console.error('Server Configuration Error: RESEND_API_KEY is not set.');
+    return { success: false, message: 'Serverfeil: RESEND_API_KEY mangler.' };
+  }
+  if (!contactFormSendTo) {
+    console.error('Server Configuration Error: CONTACT_FORM_SEND_TO is not set.');
+    return { success: false, message: 'Serverfeil: CONTACT_FORM_SEND_TO mangler.' };
+  }
+  if (!contactFormSendFrom) {
+    console.error('Server Configuration Error: CONTACT_FORM_SEND_FROM is not set.');
+    return { success: false, message: 'Serverfeil: CONTACT_FORM_SEND_FROM mangler.' };
   }
 
   try {
